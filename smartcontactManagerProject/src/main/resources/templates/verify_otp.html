@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::Layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+   <section class="banner">
+     <div class="center">
+     <div class="headingSignup">
+	   Verify OTP! 
+	</div>
+	<div th:if="${session.message}" class="ContactAlert">
+	   <span th:text="${session.message.content}"></span>
+	</div>
+	  <form th:action="@{/verify-otp}" method="post">
+          <input required="required" type="text" name="userOTP" placeholder="enter OTP here"/>
+          <button class="buttonDesign" type="submit">Verify</button>
+      </form>
+     </div>
+   </section>
+</body>
+</html>

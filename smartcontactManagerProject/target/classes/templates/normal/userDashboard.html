@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base2::Layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+  <section>
+   <div class="center2">
+     <img src="" class="profile" th:src="@{/images/dashboard.png}" />
+     <h1>Start adding your contacts on Cloud</h1>
+      <a class="si"th:href="@{/user/add-contact}" href="#"><button class="buttonDesign">Get Started</button></a>
+   </div> 
+   <script type="text/javascript">
+   $(document).ready(()=>{
+		$(".item").removeClass("active");
+		$("#home-link").addClass("active");
+	});
+   </script>
+  </section>
+</body>
+</html>

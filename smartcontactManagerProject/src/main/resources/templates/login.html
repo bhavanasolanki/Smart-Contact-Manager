@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::Layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+  <section class="banner">
+    <div class="center">
+    <div class="headingSignup">
+	   Login here! 
+	</div>
+	<div th:if="${param.error}" class="errorAlert">
+	   Invalid username and password !!
+	</div>
+	<div th:if="${param.logout}" class="logoutAlert">
+	   You have sucessfully logged out !!
+	</div>
+    <div>
+	  <form th:action="@{/logged-in}" method="post">
+	    <input type="email" name="username" placeholder="username/Email"/>
+		<input type="password" name="password" placeholder="enter password"/>
+		<button class="buttonDesign" type="submit">Submit</button>
+		<p> New User-<a class="si"th:href="@{/signup}" href="#">SIGN-UP</a></p>
+		<a class="si"th:href="@{/forgot}" href="#">Forgot-Password?</a>
+	  </form>
+	</div>
+  </div>
+   </section>
+</body>
+</html>

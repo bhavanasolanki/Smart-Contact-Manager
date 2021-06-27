@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base2::Layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+  <section>
+   <div class="center">
+     <img src="" class="profile" th:src="@{/images/default.png}" />
+     <div class="prName">
+       <p> <span th:text="${user.name}"></span></p>
+     </div>
+     <table id="customers">
+       <tr>
+           <th>User Id:</th>
+           <td th:text="${'SCM-USER-'+user.Id}">Bill Gates</td>
+        </tr>
+       <tr>
+           <th>Email:</th>
+           <td th:text="${user.email}">Bill Gates</td>
+        </tr>
+        <tr>
+           <th>Role:</th>
+           <td th:text="${user.role}">Bill Gates</td>
+        </tr>
+        <tr>
+           <th>Active Account:</th>
+           <td th:text="${user.enabled}">Bill Gates</td>
+        </tr>
+  </table>
+   </div>
+   <script>
+   $(document).ready(()=>{
+		$(".item").removeClass("active");
+		$("#view-link").addClass("active");
+	});
+   </script>
+  </section>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="Layout(content)">
+  <head>
+    <title th:text="${title}">Base html</title>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+  </head>
+  <body>
+  <div id="container">
+    <nav>
+    <div class="navbar">
+      <ul>
+        <li style="float:left" class="active"><a href="#">Smart Contact Manager</a></li>
+        <li><a th:href="@{/logout}" href="#">LOGOUT</a></li>
+        <li><a href="#"><i class='fas fa-user-alt'></i>&nbsp<span th:text="${user.name}"></span></a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="sidebar">
+     <span onClick="toggleSidebar()" class="crossBtn">&times;</span>
+     <a href="#" id="home-link" class="item" th:href="@{/user/index}"><i class="fa fa-home"></i> Home</a>
+     <a href="#" id="view-link"class="item" th:href="@{/user/your-profile}"><i class='fas fa-user-alt'></i> View Profile</a>
+     <a href="#" id="add-link"class="item" th:href="@{/user/add-contact}"><i class="fa fa-address-book-o"></i> Add contacts</a>
+     <a href="#" id="show-link"class="item" th:href="@{/user/show-contacts}"><i class="fa fa-address-book-o"></i> View contacts</a>
+     <a href="#" id="setting-link" class="item"th:href="@{/user/settings}"><i class="fa fa-gear"></i> Settings</a>
+     <a href="#" th:href="@{/logout}"><i class="fa fa-sign-out"></i> Logout</a>     
+  </div>
+  <div class="content">
+    <i onClick="toggleSidebar()" class="fa fa-bars"></i>
+    <div th:replace="${content}" class="other"></div>
+    
+   </div>
+  </div> 
+  <script>
+  const toggleSidebar= () => {
+	  if($(".sidebar").is(":visible")){
+	   $(".sidebar").css("display","none");
+	   $(".content").css("margin-left","0%");
+	  
+	  } else{
+	    $(".sidebar").css("display","block");
+	    $(".content").css("margin-left","20%");
+	  
+	  }
+	};
+	
+   
+  </script>
+</body>
+</html>

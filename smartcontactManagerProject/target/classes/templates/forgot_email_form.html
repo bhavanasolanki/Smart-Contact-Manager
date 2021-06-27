@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::Layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+   <section class="banner">
+     <div class="center">
+     <div class="headingSignup">
+	   Forgot Password! 
+	</div>
+	<div th:if="${session.message}" class="ContactAlert">
+	   <span th:text="${session.message.content}"></span>
+	</div>
+	  <form th:action="@{/sendOTP}" method="post">
+          <input required="required" type="email" name="email" placeholder="enter username/Email here"/>
+          <button th:href="@{/sendOTP}" class="buttonDesign" type="submit">Get OTP</button>
+      </form>
+     </div>
+   </section>
+</body>
+</html>

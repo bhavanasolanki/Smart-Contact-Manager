@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="Layout(content)">
+  <head>
+    <title th:text="${title}">Base html</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" >
+  </head>
+  <body>
+  <div id="container">
+    <nav>
+    <div class="navbar">
+      <ul>
+        <li style="float:left" class="active"><a href="#">Smart Contact Manager</a></li>
+        <li><a th:href="@{/signup}" href="#">SIGN-UP</a></li>
+        <li><a th:href="@{/loginPage}" href="#">LOGIN</a></li>
+        <li><a th:href="@{/about}" href="#">ABOUT</a></li>
+        <li class="active"><a th:href="@{/}" href="#">HOME</a></li>
+      </ul>
+    </div>
+  </nav>
+    <div th:replace="${content}" class="other"></div>
+    <script src="@{/js/script.js}"></script>
+   </div>
+  </body>
+</html>

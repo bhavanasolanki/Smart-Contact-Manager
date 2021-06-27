@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::Layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+  <section class="banner">
+  <div class="center">
+    <div class="headingSignup">
+	   Sign-up here!
+	</div>
+    <div>
+	  <form th:action="@{/registered}" method="post" th:object="${user}">
+	    <input type="text" name="name" th:value="${user.name}" placeholder="enter your name"/>
+		<p th:each="e: ${#fields.errors('name')}" th:text="${e}"></p>
+		<input type="password" name="password" th:value="${user.password}" placeholder="enter your password"/>
+		<input type="email" name="email" th:value="${user.email}" placeholder="enter your email address"/>
+		<p th:each="e: ${#fields.errors('email')}" th:text="${e}"></p>
+		<button class="buttonDesign" type="submit">Submit</button>
+	  </form>
+	</div>
+  </div>
+  
+  </section>
+</body>
+</html>

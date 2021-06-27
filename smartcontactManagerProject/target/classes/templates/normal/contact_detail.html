@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base2::Layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+  <section>
+   <div class="center">
+     <img src="" class="profile" th:src="@{'/images/'+${contact.imageurl}}" />
+     <div class="prName">
+       <p> <span th:text="${contact.name}"></span> (<span th:text="${contact.nickname}" ></span>)</p>
+     </div>
+     <table id="customers">
+       <tr>
+           <th>Contact Id:</th>
+           <td th:text="${'SCM-USER-'+contact.Cid}">Bill Gates</td>
+        </tr>
+      <tr>
+           <th>Phone No:</th>
+           <td th:text="${contact.phoneNo}">555 77 854</td>
+       </tr>
+       <tr>
+           <th>Email:</th>
+           <td th:text="${contact.email}">Bill Gates</td>
+        </tr>
+        <tr>
+           <th>Occupation:</th>
+           <td th:text="${contact.occupation}">Bill Gates</td>
+        </tr>
+  </table>
+   </div>
+  </section>
+</body>
+</html>

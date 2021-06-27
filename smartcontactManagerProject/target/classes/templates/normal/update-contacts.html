@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base2::Layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+  <section>
+   <div class="center">
+    <div class="headingContact">
+	   Update Contact
+	</div>
+	<div th:if="${session.message}" class="ContactAlert">
+	   <span th:text="${session.message.content}"></span>
+	</div>
+    <div>
+	  <form th:action="@{/user/process-update}" enctype="multipart/form-data" th:object="${contact}" method="post">
+	  <div style="max-width:400px;margin:auto">
+        <div class="input-icons">
+        <input type="hidden" th:value="${contact.Cid}" name="Cid"/>
+        <i class="fas fa-file-signature"></i>
+	    <input type="text" th:value="${contact.name}" name="name" placeholder="enter name here"/>
+		<i class="fas fa-envelope-square"></i>
+		<input type="email" th:value="${contact.email}" name="email" placeholder="enter email address here"/>
+		<i class="fas fa-user"></i>
+		<input type="text" th:value="${contact.nickname}" name="nickname" placeholder="enter nickname here"/>
+		<i class="fas fa-user-md"></i>
+		<input type="text" th:value="${contact.occupation}" name="occupation" placeholder="enter occupation here"/>
+		<i class="fas fa-phone-square"></i>
+		<input type="text" name="phoneNo" th:value="${contact.phoneNo}" placeholder="enter phone number here"/>
+		<input type="file" name="ContactImg">
+		<button class="buttonDesignContact" type="submit">submit</button>
+	   </div>
+	   </div>
+	   </form>
+	</div>
+  </div> 
+  </section>
+</body>
+</html>

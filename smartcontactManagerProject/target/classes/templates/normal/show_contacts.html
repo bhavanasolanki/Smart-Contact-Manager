@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base2::Layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+  <section>
+  <div class="center" th:if="${contacts}">
+    <div class="headingContact">
+	   Contact List
+	</div>
+	<div th:if="${session.message}" class="ContactAlert">
+	   <span th:text="${session.message.content}"></span>
+	</div>
+	<div class="search">
+	 <input onkeyup="search()" id="search-input" type="text" placeholder="Search contacts here" name="search">
+	  <div class="search-result">
+	    
+	  </div>
+	  <script>
+    const search=() => {
+    	let query=$("#search-input").val();
+    	console.log("searching...");
+    	if(query==""){
+    		
+    		$(".search-result").hide();
+    	}
+    	else{
+    		
+    		let url=`http://localhost:8080/search/${query}`;
+    		fetch(url).then((response)=>{
+    			return response.json();
+    		}).then((data)=>{
+    			console.log(data);
+    			let text=`<div class="center"><ul id="myUL">`;
+    		    data.forEach((c)=>{
+    		    	text+=`<li><a href="/user/contact/${c.cid}">${c.name}</a></li>`;
+    		    });
+    			text+=`</ul></div>`;
+    		    $(".search-result").html(text);
+    		    $(".search-result").show();
+    		});
+    	}
+    };
+  </script>
+	</div>
+   <div class="table-responsive">
+   <table id="customers">
+       <tr>
+           <th>Contact Id</th>
+           <th>Name</th>
+           <th>Email</th>
+           <th>Phone No.</th>
+           <th>Action</th>
+       </tr>
+       <tr th:each="c: ${contacts}">
+           <td th:text="${'SCM-USER-'+c.Cid}">Company</td>
+           <td th:text="${c.name}">Contact</td>
+           <td th:text="${c.email}">Country</td>
+           <td th:text="${c.phoneNo}">Company</td>
+           <td>
+            <a class="si"th:href="@{'/user/delete/'+${c.Cid}}" href="#"><button class="btn-delete">Delete</button></a>
+            <form th:action="@{'/user/update/'+${c.Cid}}" method="post">
+            <button type="submit" class="btn-update">Update</button>
+            </form>
+            <a class="si"th:href="@{'/user/contact/'+${c.Cid}}" href="#"><button class="btn-view">View</button></a>
+           </td>
+       </tr>
+  </table>
+  </div>
+  </div>
+  <h1 th:unless="${contacts}">You do not have permission to view this contact</h1>
+  <script type="text/javascript">
+  $(document).ready(()=>{
+		$(".item").removeClass("active");
+		$("#show-link").addClass("active");
+	});
+  </script>
+  </section>
+</body>
+</html>
